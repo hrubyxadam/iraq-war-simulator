@@ -1,0 +1,368 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #09090b;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 15% 12%, rgba(20, 184, 166, 0.08), transparent 24rem),
+    radial-gradient(circle at 88% 8%, rgba(251, 191, 36, 0.08), transparent 22rem),
+    linear-gradient(135deg, #09090b 0%, #18181b 48%, #0f172a 100%);
+}
+
+button {
+  font: inherit;
+}
+
+.situation-grid {
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(161, 161, 170, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(161, 161, 170, 0.08) 1px, transparent 1px),
+    linear-gradient(rgba(251, 191, 36, 0.04), rgba(20, 184, 166, 0.03));
+  background-size:
+    48px 48px,
+    48px 48px,
+    100% 100%;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.3));
+}
+
+.advisor-card {
+  transform-origin: center;
+  transition:
+    transform 240ms ease,
+    box-shadow 240ms ease,
+    border-color 240ms ease;
+}
+
+.advisor-card:hover {
+  border-color: rgba(251, 191, 36, 0.34);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.24);
+}
+
+.advisor-enter {
+  animation: card-enter 420ms ease-out both;
+}
+
+.advisor-choice {
+  animation: card-choice 460ms ease-out both;
+}
+
+.advisor-portrait {
+  --portrait-glow: rgba(251, 191, 36, 0.12);
+  --portrait-top: #111827;
+  --portrait-bottom: #09090b;
+  --skin: #d6c0a5;
+  --hair: #3f3f46;
+  --uniform: #334155;
+  --lapel: #1e293b;
+  --tie: rgba(245, 245, 244, 0.78);
+  --mark: #fbbf24;
+  background:
+    radial-gradient(circle at 50% 16%, var(--portrait-glow), transparent 5rem),
+    linear-gradient(180deg, var(--portrait-top) 0%, var(--portrait-bottom) 100%);
+}
+
+.advisor-silhouette {
+  position: relative;
+  height: 150px;
+  width: 132px;
+}
+
+.advisor-head {
+  position: absolute;
+  left: 41px;
+  top: 6px;
+  height: 48px;
+  width: 48px;
+  border-radius: 999px;
+  background: var(--skin);
+  box-shadow: inset 0 -4px 0 rgba(0, 0, 0, 0.08);
+}
+
+.advisor-head::before {
+  position: absolute;
+  content: "";
+  left: 6px;
+  right: 6px;
+  top: -3px;
+  height: 13px;
+  border-radius: 999px 999px 8px 8px;
+  background: var(--hair);
+}
+
+.advisor-head::after {
+  position: absolute;
+  content: "";
+  display: none;
+  left: 8px;
+  right: 8px;
+  top: 22px;
+  height: 5px;
+  border-top: 2px solid rgba(17, 24, 39, 0.75);
+  border-left: 8px solid rgba(17, 24, 39, 0.75);
+  border-right: 8px solid rgba(17, 24, 39, 0.75);
+}
+
+.advisor-body {
+  position: absolute;
+  bottom: 0;
+  left: 14px;
+  height: 98px;
+  width: 104px;
+  border-radius: 52px 52px 8px 8px;
+  background:
+    linear-gradient(90deg, transparent 47%, var(--tie) 47% 53%, transparent 53%),
+    linear-gradient(135deg, var(--lapel) 0 38%, transparent 38% 62%, var(--lapel) 62% 100%),
+    linear-gradient(180deg, var(--uniform) 0%, #0f172a 100%);
+}
+
+.advisor-mark {
+  position: absolute;
+  right: 22px;
+  bottom: 30px;
+  border: 1px solid color-mix(in srgb, var(--mark) 65%, transparent);
+  border-radius: 3px;
+  padding: 1px 4px;
+  color: color-mix(in srgb, var(--mark) 80%, white);
+  background: rgba(9, 9, 11, 0.42);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  line-height: 1.2;
+}
+
+.advisor-portrait-state {
+  --portrait-glow: rgba(45, 212, 191, 0.14);
+  --portrait-top: #1e293b;
+  --portrait-bottom: #111827;
+  --skin: #d8c0a6;
+  --hair: #a1a1aa;
+  --uniform: #1d4ed8;
+  --lapel: #172554;
+  --tie: #e2e8f0;
+  --mark: #5eead4;
+}
+
+.advisor-portrait-defense {
+  --portrait-glow: rgba(132, 204, 22, 0.16);
+  --portrait-top: #1f2a1f;
+  --portrait-bottom: #0b1210;
+  --skin: #d0b08f;
+  --hair: #57534e;
+  --uniform: #3f4f2f;
+  --lapel: #1f2a1c;
+  --tie: #a3a3a3;
+  --mark: #bef264;
+}
+
+.advisor-portrait-military {
+  --portrait-glow: rgba(34, 197, 94, 0.18);
+  --portrait-top: #172018;
+  --portrait-bottom: #090f0b;
+  --skin: #caa786;
+  --hair: #2f3a26;
+  --uniform: #4d5a2f;
+  --lapel: #26351d;
+  --tie: #a3a35d;
+  --mark: #d9f99d;
+}
+
+.advisor-portrait-intel {
+  --portrait-glow: rgba(20, 184, 166, 0.2);
+  --portrait-top: #0f2528;
+  --portrait-bottom: #061113;
+  --skin: #cdb49a;
+  --hair: #18181b;
+  --uniform: #164e63;
+  --lapel: #083344;
+  --tie: #67e8f9;
+  --mark: #22d3ee;
+}
+
+.advisor-portrait-political {
+  --portrait-glow: rgba(248, 113, 113, 0.17);
+  --portrait-top: #2a1419;
+  --portrait-bottom: #12080b;
+  --skin: #dfc1a1;
+  --hair: #3b2f2f;
+  --uniform: #7f1d1d;
+  --lapel: #450a0a;
+  --tie: #fecaca;
+  --mark: #fca5a5;
+}
+
+.advisor-portrait-iraqi {
+  --portrait-glow: rgba(251, 191, 36, 0.18);
+  --portrait-top: #2c2416;
+  --portrait-bottom: #120f09;
+  --skin: #b88462;
+  --hair: #1c1917;
+  --uniform: #92400e;
+  --lapel: #451a03;
+  --tie: #fed7aa;
+  --mark: #fdba74;
+}
+
+.advisor-portrait-budget {
+  --portrait-glow: rgba(148, 163, 184, 0.17);
+  --portrait-top: #1f2937;
+  --portrait-bottom: #0f172a;
+  --skin: #d6c0a5;
+  --hair: #71717a;
+  --uniform: #475569;
+  --lapel: #1e293b;
+  --tie: #cbd5e1;
+  --mark: #cbd5e1;
+}
+
+.advisor-portrait-legal {
+  --portrait-glow: rgba(129, 140, 248, 0.17);
+  --portrait-top: #1e1b4b;
+  --portrait-bottom: #111827;
+  --skin: #ddc4a8;
+  --hair: #27272a;
+  --uniform: #312e81;
+  --lapel: #1e1b4b;
+  --tie: #ddd6fe;
+  --mark: #c4b5fd;
+}
+
+.advisor-intel .advisor-head::after,
+.advisor-legal .advisor-head::after,
+.advisor-budget .advisor-head::after {
+  display: block;
+}
+
+.advisor-military .advisor-head::before,
+.advisor-defense .advisor-head::before {
+  left: -4px;
+  right: -4px;
+  top: -10px;
+  height: 18px;
+  border-radius: 8px 8px 4px 4px;
+  background:
+    radial-gradient(circle at 50% 45%, color-mix(in srgb, var(--mark) 65%, transparent) 0 2px, transparent 3px),
+    var(--uniform);
+}
+
+.advisor-iraqi .advisor-head::before {
+  left: 0;
+  right: 0;
+  top: -5px;
+  height: 18px;
+  border-radius: 999px 999px 10px 10px;
+  background: #292524;
+}
+
+.advisor-political .advisor-body {
+  border-radius: 42px 42px 8px 8px;
+}
+
+.advisor-state .advisor-body,
+.advisor-legal .advisor-body,
+.advisor-budget .advisor-body {
+  border-radius: 58px 58px 8px 8px;
+}
+
+.advisor-speech {
+  animation: speech-open 220ms ease-out both;
+}
+
+.choice-card {
+  transform-origin: center;
+}
+
+.choice-card:hover {
+  transform: translateY(-1px);
+}
+
+.choice-card-active {
+  animation: choice-commit 360ms ease-out both;
+}
+
+.dispatch-card {
+  animation: dispatch-in 300ms ease-out both;
+}
+
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes card-choice {
+  0%,
+  100% {
+    transform: rotate(0deg) translateY(0);
+  }
+
+  35% {
+    transform: rotate(-1.2deg) translateY(-2px);
+  }
+
+  70% {
+    transform: rotate(0.8deg) translateY(1px);
+  }
+}
+
+@keyframes choice-commit {
+  from {
+    transform: translateX(10px) scale(0.99);
+  }
+
+  to {
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes dispatch-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes speech-open {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+::selection {
+  background: rgba(45, 212, 191, 0.35);
+}
